@@ -1,0 +1,1 @@
+export const PROJECTS_BUCKET = import.meta.env.VITE_PROJECTS_BUCKET ?? 'projects'
