@@ -16,7 +16,7 @@ const AboutSection: React.FC = () => {
             
             <p className="text-gray-300 mb-6">
               I'm a senior full-stack developer with extensive experience building scalable applications 
-              using modern technologies. With over 8 years in the industry, I've developed expertise in both 
+              using modern technologies. With over 4 years in the industry, I've developed expertise in both 
               frontend and backend development, as well as security practices.
             </p>
             

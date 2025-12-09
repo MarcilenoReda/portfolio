@@ -8,7 +8,7 @@ const ContactSection: React.FC = () => {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = '201557073339'; // Replace with your actual phone number
-    const text = `الاسم: ${name}%0A text: ${message}`;
+    const text = `Name: ${name} text: ${message}`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -121,7 +121,7 @@ const ContactSection: React.FC = () => {
                 <a href="#" className="bg-[#1a1a1a] p-3 rounded-full text-gray-300 hover:text-[#2563eb] transition-colors">
                   <Instagram size={24} />
                 </a>
-                <a href="tel:+201112345678" className="bg-[#1a1a1a] p-3 rounded-full text-gray-300 hover:text-[#2563eb] transition-colors">
+                <a href="tel:+201557073339" className="bg-[#1a1a1a] p-3 rounded-full text-gray-300 hover:text-[#2563eb] transition-colors">
                   <Phone size={24} />
                 </a>
               </div>

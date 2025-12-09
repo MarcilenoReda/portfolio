@@ -50,7 +50,7 @@ const defaultProjects = [
     title: "Admin Dashboard",
     description:
       "This dashboard is fully responsive for all devices, Built using HTML, CSS, and JavaScript.",
-    tech: ["Next.js", "Framer Motion", "Tailwind"],
+    tech: ["Next", "Framer Motion", "Tailwind"],
     image: ProjectImg3,
     codeUrl: "#",
     liveUrl: "https://codewithsadee.github.io/dashboard/",
@@ -59,7 +59,7 @@ const defaultProjects = [
     title: "SMM Box",
     description:
       "Full-stack Socila Media Acc integration.",
-    tech: ["Next.js", "Stripe", "Tailwind", "Prisma"],
+    tech: ["Next", "Stripe", "Tailwind", "Prisma"],
     image: ProjectImg4,
     codeUrl: "",
     liveUrl: "",
@@ -68,6 +68,25 @@ const defaultProjects = [
 
 const ProjectsSection = () => {
   const [projects, setProjects] = useState<ProjectDisplay[]>(defaultProjects);
+  const [activeFilter, setActiveFilter] = useState<string>("All");
+
+  const filters = [
+    { label: "All", values: [] },
+    { label: "ForntEnd", values: ["React", "Next.js" , "Tailwind" , "Redux" ,"Vue" ,"Vite"] },
+    { label: "BackEnd", values: ["Laravel" , "Php" , "Mysql" , "MongoDB" , "Node.js" , "Express.js"] },
+    { label: "Web Systems", values: ["WebSystem"] },
+    { label: "Shopify", values: ["Shopify" , "Liquid"] },
+    { label: "Scripts", values: ["Python" ] },
+  ];
+
+  const filteredProjects =
+    activeFilter === "All"
+      ? projects
+      : projects.filter((project) => {
+          const currentFilter = filters.find((f) => f.label === activeFilter);
+          if (!currentFilter) return true;
+          return currentFilter.values.some((v) => project.tech.includes(v));
+        });
 
   useEffect(() => {
     const load = async () => {
@@ -100,12 +119,32 @@ const ProjectsSection = () => {
     <section id="projects" className="bg-[#0b0b0b] py-20 px-6">
 
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-white text-center mb-12">
+        <h2 className="text-4xl font-bold text-white text-center mb-6">
           My Projects
         </h2>
 
+        <div className="flex justify-center mb-10 gap-3 flex-wrap">
+          {filters.map((filter) => (
+            <motion.button
+              key={filter.label}
+              type="button"
+              onClick={() => setActiveFilter(filter.label)}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              className={`px-4 py-1.5 rounded text-sm border transition-colors duration-200 ${
+                activeFilter === filter.label
+                  ? "bg-[#2563eb] border-[#2563eb] text-white"
+                  : "bg-transparent border-[#2a2a2a] text-gray-300 hover:bg-[#1f2937]"
+              }`}
+            >
+              {filter.label}
+            </motion.button>
+          ))}
+        </div>
+
         <div className="grid sm:grid-cols-2 gap-8">
-          {projects.map((project, i) => (
+          {filteredProjects.map((project, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
